@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Bank</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+        <h1 align = center>MY Bank</h1>
+        <form action="/process" method="post">
+            <input type="text" name="amount" placeholder="Enter the amount"><br>
+            <button type="submit" name="action" value="credit">Credit</button>
+            <button type="submit" name="action" value="debit">Debit</button>
+        </form>
+        {% if balance is not none %}
+            {% if action == "credit" %}
+                <p>credit success</p><br>
+                <p>Your Balance is: {{balance}}</p>
+            {% elif action == "debit" %}
+                <p>Debit success</p>
+                <p>Your Balance is: {{balance}}</p>
+            {% endif %}
+        {% endif %}
+    </body>
+</html>
