@@ -5,6 +5,9 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     </head>
     <body>
+        <div style="text-align: right; margin: 20px;">
+            <a href="{{ url_for('logout') }}" style="color: white; background: crimson; padding: 10px 15px; border-radius: 5px; text-decoration: none;">Logout</a>
+        </div>
         <h1 align = center>MY Bank</h1>
         <form action="/process" method="post">
             <input type="text" name="amount" placeholder="Enter the amount"><br>
