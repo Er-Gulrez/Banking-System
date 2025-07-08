@@ -31,13 +31,17 @@ class Transaction(db.Model):
 # 🧪 Initial route
 @app.route("/")
 def home():
+    return render_template("home.html")
+
+@app.route("/dashboard")
+def dashboard():
     if "user_id" not in session:
         return redirect(url_for("login"))
 
     balance = session.pop("last_balance", None)
     action = session.pop("last_action", None)
 
-    return render_template("index.html", balance=balance, action=action)
+    return render_template("transaction.html", balance=balance, action=action)
 
 # 🔁 Processing credit/debit
 @app.route("/process", methods=["POST"])
@@ -78,7 +82,7 @@ def process():
     session["last_balance"] = updated_balance
     session["last_action"] = action
 
-    return redirect(url_for("home"))
+    return redirect(url_for("dashboard"))
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -91,7 +95,7 @@ def login():
         if user:
             session["user_id"] = user.id
             session["username"] = user.username
-            return redirect(url_for("home"))
+            return redirect(url_for("dashboard"))
         else:
             return render_template("login.html", error="Invalid username or password")
 
@@ -100,7 +104,7 @@ def login():
 @app.route("/logout")
 def logout():
     session.clear()
-    return redirect(url_for("login"))
+    return redirect(url_for("home"))
 
 if __name__ == "__main__":
     app.run(debug=True)
