@@ -1,0 +1,98 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: url('../images/ChatGPT Image Jul 8, 2025, 08_56_29 PM(1)(1).png') no-repeat center center/cover;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.login-box {
+  background: url('../images/ChatGPT Image Jul 9, 2025, 11_21_35 AM.png') no-repeat center center/cover;
+  backdrop-filter: blur(20px);
+  border-radius: 25px;
+  padding: 40px 35px;
+  width: 320px;
+  box-shadow: 0 0 20px rgba(255, 0, 153, 0.2);
+  text-align: center;
+  color: white;
+  box-shadow:
+  0 0 10px rgba(0, 0, 0, 0.6),
+  0 0 30px rgba(0, 0, 0, 0.4),
+  0 0 60px rgba(0, 0, 0, 0.3);
+}
+
+.login-box h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: normal;
+  color: #ffffff;
+}
+
+.login-box h1 {
+  font-size: 2.2rem;
+  color: white;
+  margin: 10px 0 30px;
+}
+
+.login-box input {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.25);  /* 25% white - less transparent */
+  color: white;
+  font-size: 1rem;
+  outline: none;
+  border: 2px solid white;
+  box-sizing: border-box;  /* This is the key to match width including padding */
+}
+
+.login-box input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.login-box button,
+.login-box .register-btn {
+  width: 100%;
+  display: block;
+  margin: 10px auto;
+  padding: 12px;
+  border: 2px solid white;
+  border-radius: 25px;
+  background: white;
+  color: #a64bf4;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s ease;
+  text-align: center;
+}
+
+.login-box button:hover,
+.login-box .register-btn:hover {
+  background: transparent;
+  border: 2px solid white;
+  color: white;
+}
+
+.login-box p {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: #fff;
+}
+
+.login-box a {
+  display: none;
+}
