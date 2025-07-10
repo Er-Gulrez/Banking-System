@@ -14,22 +14,19 @@
       <form method="POST" action="/register">
         <input type="text" name="full_name" placeholder="Full Name" required />
         <input type="date" name="dob" placeholder="Date of Birth" required />
-        <input type="email" name="email" placeholder="Email Address" required />
             {% if email_error %}
                 <p class="error">{{ email_error }}</p>
             {% endif %}
-        <input type="text" name="username" placeholder="Username" required />
+        <input type="email" name="email" placeholder="Email Address" required />
             {% if username_error %}
                 <p class="error">{{ username_error }}</p>
             {% endif %}
+        <input type="text" name="username" placeholder="Username" required />
         <input type="password" name="password" placeholder="Password" required />
         
         <button type="submit">Register Now</button>
       </form>
-      <p>Already have an account?</p>
-      <form action="/login">
-        <button type="submit" class="">Login</button>
-      </form>
+      <p>Already have an account? <a href="/login">Login</a></p>
     </div>
   </div>
 </body>

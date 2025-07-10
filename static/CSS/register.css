@@ -20,7 +20,7 @@ body {
   background: url('../images/registration_box_background.png') no-repeat center center/cover;
   backdrop-filter: blur(20px);
   border-radius: 25px;
-  padding: 40px 35px;
+  padding: 30px 35px;
   width: 340px;
   box-shadow:
   0 0 10px rgba(0, 0, 0, 0.6),
