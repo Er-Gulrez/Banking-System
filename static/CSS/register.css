@@ -9,58 +9,52 @@ body {
   align-items: center;
 }
 
-.login-wrapper {
+.register-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
 }
 
-.login-box {
+.register-box {
   background: url('../images/registration_box_background.png') no-repeat center center/cover;
   backdrop-filter: blur(20px);
   border-radius: 25px;
   padding: 40px 35px;
-  width: 320px;
-  box-shadow: 0 0 20px rgba(255, 0, 153, 0.2);
-  text-align: center;
-  color: white;
+  width: 340px;
   box-shadow:
   0 0 10px rgba(0, 0, 0, 0.6),
   0 0 30px rgba(0, 0, 0, 0.4),
   0 0 60px rgba(0, 0, 0, 0.3);
-}
-
-.login-box h1 {
-  font-size: 2.2rem;
+  text-align: center;
   color: white;
-  margin: 10px 0 30px;
 }
 
-.login-box input {
-  display: block;
+.register-box h1 {
+  font-size: 2.2rem;
+  margin-bottom: 25px;
+  color: white;
+}
+
+.register-box input {
   width: 100%;
-  padding: 12px;
-  margin-bottom: 20px;
-  border: none;
+  padding: 12px 16px;
+  margin-bottom: 15px;
+  border: 2px solid white;
   border-radius: 25px;
-  background: rgba(255, 255, 255, 0.25);  /* 25% white - less transparent */
+  background: rgba(255, 255, 255, 0.25);
   color: white;
   font-size: 1rem;
   outline: none;
-  border: 2px solid white;
-  box-sizing: border-box;  /* This is the key to match width including padding */
+  box-sizing: border-box;
 }
 
-.login-box input::placeholder {
+.register-box input::placeholder {
   color: rgba(255, 255, 255, 0.7);
 }
 
-.login-box button,
-.login-box .register-btn {
+.register-box button {
   width: 100%;
-  display: block;
-  margin: 10px auto;
   padding: 12px;
   border: 2px solid white;
   border-radius: 25px;
@@ -70,22 +64,30 @@ body {
   font-size: 1rem;
   cursor: pointer;
   transition: 0.3s ease;
-  text-align: center;
+  margin-top: 10px;
 }
 
-.login-box button:hover,
-.login-box .register-btn:hover {
+.register-box button:hover {
   background: transparent;
   border: 2px solid white;
   color: white;
 }
 
-.login-box p {
-  margin-top: 10px;
+.register-box p {
+  margin-top: 15px;
   font-size: 0.9rem;
   color: #fff;
 }
 
-.login-box a {
-  display: none;
+.register-box a {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.error {
+  color: #ff4d4d;
+  font-size: 0.5rem;
+  margin-top: -10px;
+  margin-bottom: 10px;
+  text-align: left;
 }

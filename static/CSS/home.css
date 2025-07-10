@@ -6,7 +6,7 @@ body, html {
 }
 
 .container {
-  background: url('../images/banking_homepage_16_9.png') no-repeat center center/cover;
+  background: url('../images/home_background.png') no-repeat center center/cover;
   height: 100vh;
   display: flex;
   align-items: center;

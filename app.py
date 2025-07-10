@@ -11,12 +11,24 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:Monu10111%4
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
-# 📦 Database Models
+# User model - for login
 class User(db.Model):
-    __tablename__ = 'users'  # 🔥 explicitly set table name
+    __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(150), nullable=False)
+    username = db.Column(db.String(150), nullable=False, unique=True)
     password = db.Column(db.String(150), nullable=False)
+
+    # One-to-one relationship with profile
+    profile = db.relationship('UserProfile', backref='user', uselist=False, cascade="all, delete")
+
+# UserProfile model - for additional details
+class UserProfile(db.Model):
+    __tablename__ = 'user_profiles'
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False, unique=True)
+    full_name = db.Column(db.String(150), nullable=False)
+    dob = db.Column(db.Date, nullable=False)
+    email = db.Column(db.String(150), nullable=False, unique=True)
 
 class Transaction(db.Model):
     __tablename__ = 'transactions'  # 👈 add this line
@@ -105,6 +117,52 @@ def login():
 def logout():
     session.clear()
     return redirect(url_for("home"))
+
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    if request.method == "POST":
+        full_name = request.form["full_name"]
+        dob = datetime.strptime(request.form["dob"], "%Y-%m-%d")
+        email = request.form["email"]
+        username = request.form["username"]
+        password = request.form["password"]
+
+        username_error = email_error = None
+
+        # Check for existing username
+        if User.query.filter_by(username=username).first():
+            username_error = "Username is already taken"
+
+        # Check for existing email
+        if UserProfile.query.filter_by(email=email).first():
+            email_error = "Email is already registered"
+
+        # If either error exists, return form with messages
+        if username_error or email_error:
+            return render_template(
+                "register.html",
+                username_error=username_error,
+                email_error=email_error,
+                form_data=request.form
+            )
+
+        # Otherwise, create new user
+        new_user = User(username=username, password=password)
+        db.session.add(new_user)
+        db.session.flush()
+
+        new_profile = UserProfile(
+            user_id=new_user.id,
+            full_name=full_name,
+            dob=dob,
+            email=email
+        )
+        db.session.add(new_profile)
+        db.session.commit()
+
+        return redirect(url_for("login"))
+
+    return render_template("register.html")
 
 if __name__ == "__main__":
     app.run(debug=True)

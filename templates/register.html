@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bit Bank - Register</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='CSS/register.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="register-wrapper">
+    <div class="register-box">
+      <h1>Register</h1>
+      <form method="POST" action="/register">
+        <input type="text" name="full_name" placeholder="Full Name" required />
+        <input type="date" name="dob" placeholder="Date of Birth" required />
+        <input type="email" name="email" placeholder="Email Address" required />
+            {% if email_error %}
+                <p class="error">{{ email_error }}</p>
+            {% endif %}
+        <input type="text" name="username" placeholder="Username" required />
+            {% if username_error %}
+                <p class="error">{{ username_error }}</p>
+            {% endif %}
+        <input type="password" name="password" placeholder="Password" required />
+        
+        <button type="submit">Register Now</button>
+      </form>
+      <p>Already have an account?</p>
+      <form action="/login">
+        <button type="submit" class="">Login</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
