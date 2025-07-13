@@ -1,27 +1,37 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>My Bank</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    </head>
-    <body>
-        <div style="text-align: right; margin: 20px;">
-            <a href="{{ url_for('logout') }}" style="color: white; background: crimson; padding: 10px 15px; border-radius: 5px; text-decoration: none;">Logout</a>
-        </div>
-        <h1 align = center>MY Bank</h1>
-        <form action="/process" method="post">
-            <input type="text" name="amount" placeholder="Enter the amount"><br>
-            <button type="submit" name="action" value="credit">Credit</button>
-            <button type="submit" name="action" value="debit">Debit</button>
-        </form>
-        {% if balance is not none %}
-            {% if action == "credit" %}
+
+<head>
+    <title>My Bank</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/transaction.css') }}">
+</head>
+
+<body>
+    <div class="logout">
+        <a href="{{ url_for('logout') }}"">Logout</a>
+    </div>
+    <div class=" contaner">
+            <div class="transaction-box">
+                <form action="/process" method="post">
+                    <h1>Transaction Panel</h1>
+                    <input type="text" name="amount" placeholder="Enter the amount"><br>
+                    <button type="submit" name="action" value="credit" class="btn">Credit</button>
+                    <button type="submit" name="action" value="debit" class="btn">Debit</button>
+                    <button type="submit" name="action" value="check balance" class="btn-balance">Check Balance</button>
+                </form>
+                {% if balance is not none %}
+                {% if action == "credit" %}
                 <p>credit success</p><br>
-                <p>Your Balance is: {{balance}}</p>
-            {% elif action == "debit" %}
+                {% endif %}
+                {% if action == "debit" %}
                 <p>Debit success</p>
-                <p>Your Balance is: {{balance}}</p>
-            {% endif %}
-        {% endif %}
-    </body>
+                {% endif %}
+                {% if action == "check balance" %}
+                <p>Your Current Balance is: ₹{{ balance }}</p>
+                {% endif %}
+                {% endif %}
+            </div>
+    </div>
+</body>
+
 </html>

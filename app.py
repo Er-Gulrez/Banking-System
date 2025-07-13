@@ -61,7 +61,6 @@ def process():
     if "user_id" not in session:
         return redirect(url_for("login"))
 
-    amount = float(request.form.get("amount"))
     action = request.form.get("action")
     user = User.query.get(session["user_id"])
 
@@ -70,6 +69,13 @@ def process():
     current_balance = last_txn.balance_after if last_txn else 0
     bank = Banking_System(current_balance)
 
+    if action == "check balance":
+        session["last_balance"] = bank.check_balance()
+        session["last_action"] = "check balance"
+        return redirect(url_for("dashboard"))
+
+    # Handle credit/debit
+    amount = float(request.form.get("amount"))
     try:
         if action == "credit":
             updated_balance = bank.credit(amount)
@@ -90,7 +96,6 @@ def process():
     db.session.add(txn)
     db.session.commit()
 
-    # Save data in session for GET display
     session["last_balance"] = updated_balance
     session["last_action"] = action
 
