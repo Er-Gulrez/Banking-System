@@ -62,7 +62,12 @@ def process():
         return redirect(url_for("login"))
 
     action = request.form.get("action")
+    password = request.form.get("password")
     user = User.query.get(session["user_id"])
+
+    # ✅ Password verification
+    if user.password != password:
+        return render_template("transaction.html", balance=None, action=None, error="❌ Incorrect password")
 
     # Get last balance
     last_txn = Transaction.query.filter_by(user_id=user.id).order_by(Transaction.id.desc()).first()
